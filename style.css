@@ -1,0 +1,45 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#computer {
+    text-align: center;
+}
+
+#computer img {
+    width: 400px;
+    height: 400px;
+    border: 40px solid rgb(123, 123, 123);
+    border-radius: 25px;
+}
+
+#player {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    border: 5px solid rgb(140, 140, 140);
+    border-radius: 25px;
+    background-color: rgb(140, 140, 140);
+}
+.choice {
+    border: none;
+    background-color: rgb(140, 140, 140);
+    margin: 20px;
+    border-radius: 25px;
+}
+.choice img {
+    width: 200px;
+    height: 200px;
+    border: 30px solid rgb(123, 123, 123);
+    border-radius: 25px;
+}
+.choice .rock {
+    border-color: rgb(201, 124, 124);
+}
+.choice .paper {
+    border-color: rgb(106, 149, 194);
+}
+.choice .scissors {
+    border-color: rgb(255, 255, 82);
+}
