@@ -25,7 +25,7 @@ function playRound(playerSelection, computerSelection) {
             console.log('Player lost. Scissors beat Paper.');
             return -1;
         }
-    } else if (computerSelection == 'scissors') {
+    } else if (playerSelection == 'scissors') {
         if (computerSelection == 'rock') {
             console.log('Player lost. Rock beats Scissors.');
             return -1;
@@ -35,7 +35,7 @@ function playRound(playerSelection, computerSelection) {
         } else {
             return 0;
         }
-    } else {}
+    }
 }
 
 // function game() {
@@ -67,25 +67,36 @@ function playRound(playerSelection, computerSelection) {
 
 
 function game(){
-    let tempPlayerSelection = this.textContent;
+    let playerSelection = this.textContent;
     let computerSelection = computerPlay();
-    console.log(tempPlayerSelection);
+    console.log(playerSelection);
     console.log(computerSelection);
-    let result = playRound(tempPlayerSelection, computerSelection);
+    let result = playRound(playerSelection, computerSelection);
         
     if (result == 1) {
         playerScore++;
     } else if (result == -1) {
         computerScore++;
-    } else {
+    } else if (result == 0){
         console.log('It\'s a tie.');
     }
     console.log ('Player: ' + playerScore);
     console.log ('Computer: ' + computerScore);
 }
 
-const playerSelection = document.querySelectorAll('.choice');
-let choice = playerSelection.forEach(choice => choice.addEventListener('click', game));
+function start(){
+    playing = true;
+    playerScore =0;
+    computerScore =0;
+    comp.src = "images/make_choice.gif";
+    
+}
+
+const player = document.querySelectorAll('.choice');
+const comp = document.querySelector('.computer');
+let playing = false;
+comp.addEventListener('click', start);
+player.forEach(choice => choice.addEventListener('click', game));
 let playerScore =0;
 let computerScore =0;
 

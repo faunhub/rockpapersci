@@ -3,15 +3,14 @@ body {
     flex-direction: column;
 }
 
-#computer {
+#screen {
     text-align: center;
 }
 
-#computer img {
+#screen img {
     width: 400px;
     height: 400px;
-    border: 40px solid rgb(123, 123, 123);
-    border-radius: 25px;
+    
 }
 
 #player {
