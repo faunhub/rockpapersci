@@ -56,7 +56,7 @@ function playRound(playerSelection, computerSelection) {
             return -1;
         } else if (computerSelection == 'paper') {
             result.innerText = "player won. scissors beat paper.";
-            comp.src = "images/paer.png";
+            comp.src = "images/paper.png";
             setTimeout(() => {
                 comp.src="images/make_choice.gif";
                 result.innerText = "";}
