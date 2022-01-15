@@ -55,15 +55,15 @@ function playRound(playerSelection, computerSelection) {
 function game(){
     if (!playing){
         return;
-    } 
+    }  
     let playerSelection = this.textContent;
     let computerSelection = computerPlay();
-    let result = playRound(playerSelection, computerSelection);
+    let compare = playRound(playerSelection, computerSelection);
     
-    if (result == 1) {
+    if (compare == 1) {
         playerScoreCount++;
         playerScore.firstElementChild.textContent = playerScoreCount;
-    } else if (result == -1) {
+    } else if (compare == -1) {
         computerScoreCount++;
         computerScore.firstElementChild.textContent = computerScoreCount;
     }
@@ -72,7 +72,7 @@ function game(){
         comp.src ="images/win.png";
         playing =false;
     } else if (computerScoreCount ==5) {
-        result.innerText ="you lost:(";
+        result.innerText ="you lost";
         comp.src="images/lose.png";
         playing =false;
     }
