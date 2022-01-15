@@ -7,62 +7,46 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == 'rock') {
         if (computerSelection == 'rock') {
+            result.innerText = "you tied.";
+            comp.src = "images/rock.png";
             return 0;
         } else if (computerSelection == 'paper') {
             result.innerText = "player lost. paper beats rock.";
             comp.src = "images/paper.png";
-            setTimeout(() => {
-                comp.src="images/make_choice.gif";
-                result.innerText = "";}
-                , 700);
             return -1;
         } else {
             result.innerText = "player won. rock beats scissors.";
             comp.src = "images/scissors.png";
-            setTimeout(() => {
-                comp.src="images/make_choice.gif";
-                result.innerText = "";}
-                , 700);
             return 1;
         }
     } else if (playerSelection == 'paper') {
         if (computerSelection == 'rock') {
             result.innerText = "player won. paper beats rock.";
             comp.src = "images/rock.png";
-            setTimeout(() => {
-                comp.src="images/make_choice.gif";
-                result.innerText = "";}
-                , 1300);
+            
             return 1;
         } else if (computerSelection == 'paper') {
+            result.innerText = "you tied.";
+            comp.src = "images/paper.png";
             return 0;
         } else {
             result.innerText = "player lost. scissors beat paper.";
             comp.src = "images/paper.png";
-            setTimeout(() => {
-                comp.src="images/make_choice.gif";
-                result.innerText = "";}
-                , 700);
+            
             return -1;
         }
     } else if (playerSelection == 'scissors') {
         if (computerSelection == 'rock') {
             result.innerText = "player lost. rock beats scissors.";
             comp.src = "images/rock.png";
-            setTimeout(() => {
-                comp.src="images/make_choice.gif";
-                result.innerText = "";}
-                , 700);
             return -1;
         } else if (computerSelection == 'paper') {
             result.innerText = "player won. scissors beat paper.";
             comp.src = "images/paper.png";
-            setTimeout(() => {
-                comp.src="images/make_choice.gif";
-                result.innerText = "";}
-                , 700);
             return 1;
         } else {
+            result.innerText = "you tied.";
+            comp.src = "images/scissors.png";
             return 0;
         }
     }
@@ -71,25 +55,26 @@ function playRound(playerSelection, computerSelection) {
 function game(){
     if (!playing){
         return;
-    } else {
-        let playerSelection = this.textContent;
-        let computerSelection = computerPlay();
-        console.log(playerSelection);
-        console.log(computerSelection);
-        let result = playRound(playerSelection, computerSelection);
-            
-        if (result == 1) {
-            playerScoreCount++;
-            playerScore.firstElementChild.textContent = playerScoreCount;
-        } else if (result == -1) {
-            computerScoreCount++;
-            computerScore.firstElementChild.textContent = computerScoreCount;
-        } else if (result == 0){
-            comp.src = "images/tie.png";
-            setTimeout(() => comp.src="images/make_choice.gif", 700);
-        }
-        console.log ('Player: ' + playerScoreCount);
-        console.log ('Computer: ' + computerScoreCount);
+    } 
+    let playerSelection = this.textContent;
+    let computerSelection = computerPlay();
+    let result = playRound(playerSelection, computerSelection);
+    
+    if (result == 1) {
+        playerScoreCount++;
+        playerScore.firstElementChild.textContent = playerScoreCount;
+    } else if (result == -1) {
+        computerScoreCount++;
+        computerScore.firstElementChild.textContent = computerScoreCount;
+    }
+    if (playerScoreCount ==5) {
+        result.innerText ="you won!!!";
+        comp.src ="images/win.png";
+        playing =false;
+    } else if (computerScoreCount ==5) {
+        result.innerText ="you lost:(";
+        comp.src="images/lose.png";
+        playing =false;
     }
 }
 
@@ -113,10 +98,13 @@ restart.addEventListener('click', start);
 restart.addEventListener('click', () => playing =false)
 
 player.forEach(choice => choice.addEventListener('click', game));
+
 let playerScoreCount =0;
 let computerScoreCount =0;
 const playerScore = document.getElementById('playerScore');
 const computerScore =document.getElementById('computerScore');
+
+
 
 
 
