@@ -1,16 +1,29 @@
 body {
     display: flex;
     flex-direction: column;
+    font-family: sans-serif;
+}
+
+#menu {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+#menu img {
+    width: 50px;
+    height: 50px;
+}
+#menu div {
+    font-size: 32px;
+
 }
 
 #screen {
     text-align: center;
 }
-
 #screen img {
     width: 400px;
-    height: 400px;
-    
+    height: 400px; 
 }
 
 #player {
@@ -27,18 +40,14 @@ body {
     margin: 20px;
     border-radius: 25px;
 }
-.choice img {
+.choice:hover {
+    font-weight: bold;
+    text-shadow: 5px 5px 10px black;
+}
+
+/* .choice img {
     width: 200px;
     height: 200px;
     border: 30px solid rgb(123, 123, 123);
     border-radius: 25px;
-}
-.choice .rock {
-    border-color: rgb(201, 124, 124);
-}
-.choice .paper {
-    border-color: rgb(106, 149, 194);
-}
-.choice .scissors {
-    border-color: rgb(255, 255, 82);
-}
+} */

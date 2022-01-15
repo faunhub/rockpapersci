@@ -38,35 +38,8 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-// function game() {
-//     let playerScore =0;
-//     let computerScore =0;
-//     for (let i =1; i<=5; i++){
-//         let playerSelection = prompt('Choose rock, paper or scissors >>').toLowerCase();
-//         let computerSelection = computerPlay();
-//         let result = playRound(playerSelection, computerSelection);
-//         console.log(result);
-        
-//         if (result == 1) {
-//             playerScore++;
-//         } else if (result == -1) {
-//             computerScore++
-//         } else {
-//             console.log('It\'s a tie.');
-//         }
-//     }
-
-//     if (playerScore > computerScore) {
-//         console.log('YOU WON!');
-//     } else if (playerScore < computerScore) {
-//         console.log('You LOST!');
-//     } else {
-//         console.log('IT\'S A TIE!');
-//     }
-// }
-
-
 function game(){
+    
     let playerSelection = this.textContent;
     let computerSelection = computerPlay();
     console.log(playerSelection);
@@ -74,31 +47,40 @@ function game(){
     let result = playRound(playerSelection, computerSelection);
         
     if (result == 1) {
-        playerScore++;
+        playerScoreCount++;
+        playerScore.textContent = playerScoreCount;
     } else if (result == -1) {
-        computerScore++;
+        computerScoreCount++;
+        computerScore.textContent = computerScoreCount;
     } else if (result == 0){
-        console.log('It\'s a tie.');
+        comp.src = "images/tie.png";
+        setTimeout(() => comp.src="images/make_choice.gif", 500);
     }
-    console.log ('Player: ' + playerScore);
-    console.log ('Computer: ' + computerScore);
+    console.log ('Player: ' + playerScoreCount);
+    console.log ('Computer: ' + computerScoreCount);
 }
 
 function start(){
     playing = true;
-    playerScore =0;
-    computerScore =0;
-    comp.src = "images/make_choice.gif";
-    
+    playerScoreCount =0;
+    computerScoreCount =0;
+    comp.src = "images/computer_default.png";
 }
+
 
 const player = document.querySelectorAll('.choice');
 const comp = document.querySelector('.computer');
+const restart = document.querySelector('.restart');
 let playing = false;
 comp.addEventListener('click', start);
+comp.addEventListener('click', () => comp.src = "images/make_choice.gif");
+restart.addEventListener('click', start);
+
 player.forEach(choice => choice.addEventListener('click', game));
-let playerScore =0;
-let computerScore =0;
+let playerScoreCount =0;
+let computerScoreCount =0;
+let playerScore = document.getElementById('playerScore');
+let computerScore =document.getElementById('computerScore');
 
 
 
