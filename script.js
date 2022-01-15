@@ -5,8 +5,6 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    console.log(playerSelection);
-    console.log(computerSelection);
     if (playerSelection == 'rock') {
         if (computerSelection == 'rock') {
             return 0;
@@ -27,7 +25,7 @@ function playRound(playerSelection, computerSelection) {
             console.log('Player lost. Scissors beat Paper.');
             return -1;
         }
-    } else if (computerSelection == 'scissors') {
+    } else if (playerSelection == 'scissors') {
         if (computerSelection == 'rock') {
             console.log('Player lost. Rock beats Scissors.');
             return -1;
@@ -37,39 +35,53 @@ function playRound(playerSelection, computerSelection) {
         } else {
             return 0;
         }
-    } else {
-
     }
 }
 
-function game() {
-    let playerScore =0;
-    let computerScore =0;
-    for (let i =1; i<=5; i++){
-        let playerSelection = prompt('Choose rock, paper or scissors >>').toLowerCase();
-        let computerSelection = computerPlay();
-        let result = playRound(playerSelection, computerSelection);
-        console.log(result);
+function game(){
+    
+    let playerSelection = this.textContent;
+    let computerSelection = computerPlay();
+    console.log(playerSelection);
+    console.log(computerSelection);
+    let result = playRound(playerSelection, computerSelection);
         
-        if (result == 1) {
-            playerScore++;
-        } else if (result == -1) {
-            computerScore++
-        } else {
-            console.log('It\'s a tie.');
-        }
+    if (result == 1) {
+        playerScoreCount++;
+        playerScore.textContent = playerScoreCount;
+    } else if (result == -1) {
+        computerScoreCount++;
+        computerScore.textContent = computerScoreCount;
+    } else if (result == 0){
+        comp.src = "images/tie.png";
+        setTimeout(() => comp.src="images/make_choice.gif", 500);
     }
-
-    if (playerScore > computerScore) {
-        console.log('YOU WON!');
-    } else if (playerScore < computerScore) {
-        console.log('You LOST!');
-    } else {
-        console.log('IT\'S A TIE!');
-    }
+    console.log ('Player: ' + playerScoreCount);
+    console.log ('Computer: ' + computerScoreCount);
 }
 
-game();
+function start(){
+    playing = true;
+    playerScoreCount =0;
+    computerScoreCount =0;
+    comp.src = "images/computer_default.png";
+}
+
+
+const player = document.querySelectorAll('.choice');
+const comp = document.querySelector('.computer');
+const restart = document.querySelector('.restart');
+let playing = false;
+comp.addEventListener('click', start);
+comp.addEventListener('click', () => comp.src = "images/make_choice.gif");
+restart.addEventListener('click', start);
+
+player.forEach(choice => choice.addEventListener('click', game));
+let playerScoreCount =0;
+let computerScoreCount =0;
+let playerScore = document.getElementById('playerScore');
+let computerScore =document.getElementById('computerScore');
+
 
 
 
